@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3F639E"
+    tools:context="com.example.tc.represent.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Represent!"
+        android:id="@+id/represent"
+        android:textSize="60dp"
+        android:textColor="#fff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="6"
+        android:id="@+id/editZipMain"
+        android:textAlignment="center"
+        android:textColor="#DADADA"
+        android:background="#7D93B6"
+        android:textSize="24dp"
+        android:layout_above="@+id/submitBtn"
+        android:layout_alignStart="@+id/submitBtn"
+        android:layout_marginBottom="43dp"
+        android:layout_alignEnd="@+id/submitBtn"
+        android:singleLine="false"
+        android:hint="Enter Zip Code"
+        android:textColorHint="#DADADA" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitBtn"
+        android:textColor="#DADADA"
+        android:background="#5F5F5F"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/currLocMainBtn"
+        android:layout_alignStart="@+id/currLocMainBtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Current Location"
+        android:id="@+id/currLocMainBtn"
+        android:layout_marginTop="38dp"
+        android:textColor="#DADADA"
+        android:background="#767272"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_below="@+id/submitBtn"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
