@@ -1,5 +1,7 @@
 package com.example.tc.represent;
 
+import com.twitter.sdk.android.core.models.Tweet;
+
 /**
  * Created by TC on 3/1/2016.
  */
@@ -12,16 +14,19 @@ public class CongressMember {
     private String imagePath;
     private String party;
     private String[] sponsoredBills;
-    private String tweet;
+    private String twitterID;
     private String type;
     private String website;
     private String demPresVote;
     private String repPresVote;
     private String county;
+    private String bioguide_id;
+    private Tweet tweet;
 
     public CongressMember(String name, String[] committees, String email, String endOfTerm,
-                          String imagePath, String party, String[] sponsoredBills, String tweet,
-                          String type, String website, String demPresVote, String repPresVote, String county) {
+                          String imagePath, String party, String[] sponsoredBills, String twitterID,
+                          String type, String website, String demPresVote, String repPresVote,
+                          String county, String bioguide_id) {
         this.name = name;
         this.committees = committees;
         this.email = email;
@@ -29,12 +34,42 @@ public class CongressMember {
         this.imagePath = imagePath;
         this.party = party;
         this.sponsoredBills = sponsoredBills;
-        this.tweet = tweet;
+        this.twitterID = twitterID;
         this.type = type;
         this.website = website;
         this.demPresVote = demPresVote;
         this.repPresVote = repPresVote;
         this.county = county;
+        this.bioguide_id = bioguide_id;
+        this.tweet = null;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public void setDemPresVote(String demPresVote) {
+        this.demPresVote = demPresVote;
+    }
+
+    public void setRepPresVote(String repPresVote) {
+        this.repPresVote = repPresVote;
+    }
+
+    public void setSponsoredBills(String[] sponsoredBills) {
+        this.sponsoredBills = sponsoredBills;
+    }
+
+    public void setCommittees(String[] committees) {
+        this.committees = committees;
+    }
+
+    public void setTweet(Tweet tweet) {
+        this.tweet = tweet;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getName() {
@@ -63,7 +98,11 @@ public class CongressMember {
         return sponsoredBills;
     }
 
-    public String getTweet() {
+    public String getTwitterID() {
+        return twitterID;
+    }
+
+    public Tweet getTweet() {
         return tweet;
     }
 
@@ -85,5 +124,9 @@ public class CongressMember {
 
     public String getCounty() {
         return county;
+    }
+
+    public String getBioguide_id() {
+        return bioguide_id;
     }
 }

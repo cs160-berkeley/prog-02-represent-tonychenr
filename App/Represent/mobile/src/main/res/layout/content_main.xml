@@ -22,7 +22,7 @@
         android:textColor="#fff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,13 +34,12 @@
         android:textColor="#DADADA"
         android:background="#7D93B6"
         android:textSize="24dp"
-        android:layout_above="@+id/submitBtn"
-        android:layout_alignStart="@+id/submitBtn"
-        android:layout_marginBottom="43dp"
-        android:layout_alignEnd="@+id/submitBtn"
         android:singleLine="false"
         android:hint="Enter Zip Code"
-        android:textColorHint="#DADADA" />
+        android:textColorHint="#DADADA"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -51,7 +50,8 @@
         android:background="#5F5F5F"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/editZipMain"
         android:layout_alignEnd="@+id/currLocMainBtn"
         android:layout_alignStart="@+id/currLocMainBtn" />
 
@@ -60,12 +60,24 @@
         android:layout_height="wrap_content"
         android:text="Use Current Location"
         android:id="@+id/currLocMainBtn"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="50dp"
         android:textColor="#DADADA"
         android:background="#767272"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:layout_below="@+id/submitBtn"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Find your members of Congress"
+        android:id="@+id/textView"
+        android:textColor="#fff"
+        android:layout_below="@+id/represent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
 
 </RelativeLayout>

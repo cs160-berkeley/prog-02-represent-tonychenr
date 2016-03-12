@@ -29,7 +29,7 @@ public class WatchGridPagerAdapter extends FragmentGridPagerAdapter {
     }
     @Override
     public int getColumnCount(int i) {
-        if (i == getRowCount() - 1 || members.get(i).getType().equals("Senator")) {
+        if (i == getRowCount() - 1 || members.get(i).getType().equals("Sen")) {
             return 1;
         } else {
             return 2;
@@ -60,8 +60,10 @@ public class WatchGridPagerAdapter extends FragmentGridPagerAdapter {
             fragment = new MemberCardFragment();
             ((MemberCardFragment) fragment).setCongressMember(member);
         } else {
-            title = member.getCounty();
-            text = "Obama: " + member.getDemPresVote() + "\n"
+            title = "";
+            text = "2012 Presidential Election \n"
+                    + member.getCounty() + "\n"
+                    + "Obama: " + member.getDemPresVote() + "\n"
                     + "Romney: " + member.getRepPresVote();
             fragment = CardFragment.create(title, text);
         }
@@ -72,6 +74,9 @@ public class WatchGridPagerAdapter extends FragmentGridPagerAdapter {
     // Obtain the background image for the specific page
     @Override
     public Drawable getBackgroundForPage(int row, int column) {
+        if (column == 1) {
+            return GridPagerAdapter.BACKGROUND_NONE;
+        }
         if(row == getRowCount() - 1) {
             // Place image at specified position
             return context.getResources().getDrawable(R.drawable.us_map, null);

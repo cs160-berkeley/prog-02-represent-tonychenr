@@ -1,60 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:twittersdk="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#fefefe"
+    android:descendantFocusability="blocksDescendants">
 
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:twittersdk="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:background="#fefefe"
+            android:descendantFocusability="blocksDescendants"
+            android:layout_marginTop="14dp">
 
-    <ImageView
-        android:layout_width="400px"
-        android:layout_height="400px"
-        android:id="@+id/congressImage"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+            <ImageView
+                android:layout_width="225px"
+                android:layout_height="275px"
+                android:id="@+id/congressImage"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/name"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/congressImage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/name"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/congressImage"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/party"
-        android:layout_below="@+id/name"
-        android:layout_toEndOf="@+id/congressImage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Party: "
+                android:id="@+id/partyLabel"
+                android:layout_toEndOf="@+id/congressImage"
+                android:textSize="14sp"
+                android:textColor="#222"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_alignBottom="@+id/party"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/email"
-        android:layout_below="@+id/party"
-        android:layout_toEndOf="@+id/congressImage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/email"
+                android:autoLink="email"
+                android:textSize="14sp"
+                android:textColor="#222"
+                android:layout_below="@+id/party"
+                android:layout_toEndOf="@+id/emailImage"
+                android:layout_marginTop="4dp"
+                android:textColorLink="#B42628" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/website"
-        android:layout_below="@+id/email"
-        android:layout_toEndOf="@+id/congressImage" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/website"
+                android:autoLink="web"
+                android:textSize="14sp"
+                android:textColor="#222"
+                android:layout_toEndOf="@+id/linkImage"
+                android:layout_marginTop="4dp"
+                android:textColorLink="#B42628"
+                android:layout_below="@+id/email"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/tweet"
-        android:layout_below="@+id/congressImage"
-        android:layout_alignParentStart="true" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:text="Medium Text"-->
+                <!--android:id="@+id/tweet"-->
+                <!--android:layout_below="@+id/congressImage"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tweet_layout"
+                android:layout_below="@+id/website"
+                android:layout_alignParentStart="true">
+
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/emailImage"
+                android:src="@drawable/email"
+                android:layout_below="@+id/partyLabel"
+                android:layout_alignBottom="@+id/email"
+                android:layout_toEndOf="@+id/congressImage"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/linkImage"
+                android:src="@drawable/link"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@+id/congressImage"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_alignBottom="@+id/website"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/party"
+                android:textSize="14sp"
+                android:textColor="#222"
+                android:layout_toEndOf="@+id/partyLabel"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="4dp" />
+        </RelativeLayout>
 </RelativeLayout>

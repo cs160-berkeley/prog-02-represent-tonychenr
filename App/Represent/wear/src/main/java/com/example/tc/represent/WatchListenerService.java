@@ -32,14 +32,7 @@ public class WatchListenerService extends WearableListenerService {
     private static final String LEXY_FEED = "/Lexy";
     private static final String TAG = "WatchListener";
     private static final int TIMEOUT_MS = 500;
-//    private GoogleApiClient mGoogleApiClient;
 
-//    @Override
-//    public void onCreate(){
-//        super.onCreate();
-//
-////        mGoogleApiClient.connect();
-//    }
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in WatchListenerService, got: " + messageEvent.getPath());
@@ -67,7 +60,7 @@ public class WatchListenerService extends WearableListenerService {
                         memberAsset = dataMap.getAsset(s);
                         bitmap = loadBitmapFromAsset(memberAsset);
                         stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
                         bytes = stream.toByteArray();
                         intent.putExtra(s, bytes);
                     } else if (s.startsWith("Member")) {

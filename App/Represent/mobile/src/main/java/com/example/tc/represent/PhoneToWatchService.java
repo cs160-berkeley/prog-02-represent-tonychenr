@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,8 +23,12 @@ import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class PhoneToWatchService extends Service {
 
@@ -105,29 +110,55 @@ public class PhoneToWatchService extends Service {
     }
     private static Asset createAssetFromBitmap(Bitmap bitmap) {
         final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, byteStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteStream);
         return Asset.createFromBytes(byteStream.toByteArray());
     }
 
     private PutDataRequest generateDataRequest(Intent intent) {
         PutDataMapRequest dataMapRequest = PutDataMapRequest.create("/data");
         DataMap map = DataMap.fromBundle(intent.getExtras());
-        Bitmap bitmap;
         String imagePath;
-        int id;
+        Bitmap image;
         for (String s : intent.getExtras().keySet()) {
             if (s.startsWith("Member")) {
                 imagePath = intent.getExtras().getStringArrayList(s).get(3);
-                id = getBaseContext().getResources().getIdentifier(getBaseContext().getPackageName()
-                        + ":" + imagePath, null, null);
-                bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(), id);
-                map.putAsset("image" + s, createAssetFromBitmap(bitmap));
+                GetImageTask imageTask = new GetImageTask();
+                try {
+                    image = imageTask.execute(imagePath).get();
+                    map.putAsset("image" + s, createAssetFromBitmap(image));
+                } catch (InterruptedException | ExecutionException e) {
+                    Log.d("PhoneToWatchService", "Failed to get image");
+                }
             }
 
         }
         dataMapRequest.getDataMap().putAll(map);
         dataMapRequest.getDataMap().putLong("date", new Date().getTime());
         return dataMapRequest.asPutDataRequest();
+    }
+
+    private class GetImageTask extends AsyncTask<String,Void,Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            return getBitmapFromURL(params[0]);
+        }
+
+        private Bitmap getBitmapFromURL(String myurl) {
+            try {
+                URL url = new URL(myurl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                Log.d("getBitmapFromURL", myurl);
+                return myBitmap;
+            } catch (Exception e) {
+                Log.d("PhoneToWatchServiceTask", "Failed to get image " + myurl);
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 
 }
