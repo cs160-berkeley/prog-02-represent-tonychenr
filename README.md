@@ -12,7 +12,7 @@ See [Represent] (https://youtu.be/9yom5475OiE)
 
 ## Screenshots
 
-<img src="screenshots/Main.png" height="400" alt="Screenshot"/>
+<img src="screenshots/main.png" height="400" alt="Screenshot"/>
 <img src="screenshots/Congressional.png" height="400" alt="Screenshot"/>
 <img src="screenshots/Detailed.png" height="400" alt="Screenshot"/>
 <img src="screenshots/WearMain.png" height="400" alt="Screenshot"/>
@@ -23,4 +23,4 @@ See [Represent] (https://youtu.be/9yom5475OiE)
 
 * Hat tip to anyone who's code was used
 * Any other support
-StackOverflow and Android Documentation
+* Big thanks to StackOverflow and Android Documentation
