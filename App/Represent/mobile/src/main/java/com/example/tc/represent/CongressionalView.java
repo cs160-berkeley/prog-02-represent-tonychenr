@@ -57,10 +57,11 @@ public class CongressionalView extends AppCompatActivity implements
     private String baseImageURL = "https://theunitedstates.io/images/congress/225x275/";
     private String baseGeocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?";
     private static final String SUNLIGHT_KEY =  "";
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+
     private static final String TWITTER_KEY = "";
     private static final String TWITTER_SECRET = "";
     private static final String GOOGLE_KEY = "";
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -337,6 +338,8 @@ public class CongressionalView extends AppCompatActivity implements
                         randomUrl.append("&longitude=").append(latlon[1]);
                         randomUrl.append("&apikey=").append(SUNLIGHT_KEY);
                         url = randomUrl.toString();
+
+                        title = mCounty;
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
@@ -384,6 +387,7 @@ public class CongressionalView extends AppCompatActivity implements
                         c.setRepPresVote(repPresVote);
                         c.setCounty(mCounty);
                     }
+                    setTitle(title);
                     sendWatchData();
                 } else {
                     new GetVotingDataTask().execute(mZipCode);
@@ -646,6 +650,7 @@ public class CongressionalView extends AppCompatActivity implements
                 countyUrl.append(baseGeocodingURL).append("latlng=");
                 countyUrl.append(latitude).append(",").append(longitude);
                 countyUrl.append("&key=").append(GOOGLE_KEY);
+                Log.d("GetVotingDataTask", countyUrl.toString());
                 return setVotingData(countyUrl.toString());
         }
 
@@ -656,6 +661,7 @@ public class CongressionalView extends AppCompatActivity implements
                 Toast.makeText(CongressionalView.this, "Could not load voting data at location",
                         Toast.LENGTH_SHORT).show();
             } else {
+                setTitle(title);
                 sendWatchData();
             }
 
@@ -695,6 +701,7 @@ public class CongressionalView extends AppCompatActivity implements
                 }
                 JSONObject voteData = new JSONObject(loadJSONFromAsset("election-county-2012.json"));
                 String countyState = county + ", " + state;
+                title = countyState;
                 JSONObject countyVote = voteData.getJSONObject(countyState);
                 if (countyVote == null) {
                     return null;

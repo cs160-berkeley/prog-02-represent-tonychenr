@@ -11,8 +11,8 @@
         android:layout_height="match_parent"
         app:layout_box="bottom" >
             <ImageButton
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:id="@+id/imageButton"
                 android:scaleType="fitCenter"
                 android:background="@color/white"

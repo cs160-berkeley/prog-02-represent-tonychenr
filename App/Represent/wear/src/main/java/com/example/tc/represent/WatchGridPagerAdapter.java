@@ -46,7 +46,7 @@ public class WatchGridPagerAdapter extends FragmentGridPagerAdapter {
     public Fragment getFragment(int row, int column) {
         String title;
         String text;
-        CardFragment fragment;
+        Fragment fragment;
 
         if (row == getRowCount() - 1) {
             title = "Shake Function";
@@ -60,12 +60,10 @@ public class WatchGridPagerAdapter extends FragmentGridPagerAdapter {
             fragment = new MemberCardFragment();
             ((MemberCardFragment) fragment).setCongressMember(member);
         } else {
-            title = "";
-            text = "2012 Presidential Election \n"
-                    + member.getCounty() + "\n"
-                    + "Obama: " + member.getDemPresVote() + "\n"
-                    + "Romney: " + member.getRepPresVote();
-            fragment = CardFragment.create(title, text);
+            fragment = new VoteFragment();
+            ((VoteFragment) fragment).setVoteData(member.getCounty(),
+                    member.getDemPresVote(),
+                    member.getRepPresVote());
         }
 
         return fragment;
